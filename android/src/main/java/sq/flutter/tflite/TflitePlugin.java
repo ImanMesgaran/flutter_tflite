@@ -221,9 +221,12 @@ public class TflitePlugin implements MethodCallHandler {
     }
 
     int numThreads = (int) args.get("numThreads");
-    Boolean useGpuDelegate = (Boolean) args.get("useGpuDelegate");
-    if (useGpuDelegate == null) {
-      useGpuDelegate = false;
+    boolean useGpuDelegate = true;
+    String tam = args.get("useGpuDelegate").toString();
+    if (tam == "null" || tam == "false") {
+    useGpuDelegate = false;
+    } else{
+    useGpuDelegate = true;
     }
 
     final Interpreter.Options tfliteOptions = new Interpreter.Options();
